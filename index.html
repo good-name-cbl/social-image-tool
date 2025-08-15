@@ -104,6 +104,67 @@
                 <div id="icon-results" class="results-area"></div>
             </div>
         </div>
+
+        <!-- Custom Resize Tool -->
+        <div id="resize" class="tab-content">
+            <div class="tool-section">
+                <h2>Custom Image Resizer</h2>
+                <div class="upload-area" id="resize-upload">
+                    <p>Drag & drop images or click to select files</p>
+                    <input type="file" id="resize-files" multiple accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="resize-options" id="resize-options" style="display: none;">
+                    <div class="input-group">
+                        <label>Width (px):</label>
+                        <input type="number" id="resize-width" min="1" max="5000">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (px):</label>
+                        <input type="number" id="resize-height" min="1" max="5000">
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            <input type="checkbox" id="keep-aspect" checked>
+                            Maintain aspect ratio
+                        </label>
+                    </div>
+                    <button id="resize-process" class="process-btn">Resize Images</button>
+                </div>
+                
+                <div id="resize-results" class="results-area"></div>
+            </div>
+        </div>
+
+        <!-- Image Format Converter Tool -->
+        <div id="convert" class="tab-content">
+            <div class="tool-section">
+                <h2>Image Format Converter</h2>
+                <div class="upload-area" id="convert-upload">
+                    <p>Drag & drop files or click to select images for conversion</p>
+                    <input type="file" id="convert-files" multiple accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="convert-options" id="convert-options" style="display: none;">
+                    <div class="input-group">
+                        <label>Convert to:</label>
+                        <select id="convert-format">
+                            <option value="jpeg">JPEG</option>
+                            <option value="png">PNG</option>
+                            <option value="webp">WebP</option>
+                        </select>
+                    </div>
+                    <div class="input-group" id="quality-group">
+                        <label>Quality (1-100):</label>
+                        <input type="range" id="convert-quality" min="1" max="100" value="90">
+                        <span id="quality-value">90</span>
+                    </div>
+                    <button id="convert-process" class="process-btn">Convert Images</button>
+                </div>
+                
+                <div id="convert-results" class="results-area"></div>
+            </div>
+        </div>
         
         <!-- Usage Guide Section -->
         <section class="guide-section">
@@ -173,67 +234,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Custom Resize Tool -->
-        <div id="resize" class="tab-content">
-            <div class="tool-section">
-                <h2>Custom Image Resizer</h2>
-                <div class="upload-area" id="resize-upload">
-                    <p>Drag & drop images or click to select files</p>
-                    <input type="file" id="resize-files" multiple accept="image/*" style="display: none;">
-                </div>
-                
-                <div class="resize-options" id="resize-options" style="display: none;">
-                    <div class="input-group">
-                        <label>Width (px):</label>
-                        <input type="number" id="resize-width" min="1" max="5000">
-                    </div>
-                    <div class="input-group">
-                        <label>Height (px):</label>
-                        <input type="number" id="resize-height" min="1" max="5000">
-                    </div>
-                    <div class="input-group">
-                        <label>
-                            <input type="checkbox" id="keep-aspect" checked>
-                            Maintain aspect ratio
-                        </label>
-                    </div>
-                    <button id="resize-process" class="process-btn">Resize Images</button>
-                </div>
-                
-                <div id="resize-results" class="results-area"></div>
-            </div>
-        </div>
-
-        <!-- Image Format Converter Tool -->
-        <div id="convert" class="tab-content">
-            <div class="tool-section">
-                <h2>Image Format Converter</h2>
-                <div class="upload-area" id="convert-upload">
-                    <p>Drag & drop files or click to select images for conversion</p>
-                    <input type="file" id="convert-files" multiple accept="image/*" style="display: none;">
-                </div>
-                
-                <div class="convert-options" id="convert-options" style="display: none;">
-                    <div class="input-group">
-                        <label>Convert to:</label>
-                        <select id="convert-format">
-                            <option value="jpeg">JPEG</option>
-                            <option value="png">PNG</option>
-                            <option value="webp">WebP</option>
-                        </select>
-                    </div>
-                    <div class="input-group" id="quality-group">
-                        <label>Quality (1-100):</label>
-                        <input type="range" id="convert-quality" min="1" max="100" value="90">
-                        <span id="quality-value">90</span>
-                    </div>
-                    <button id="convert-process" class="process-btn">Convert Images</button>
-                </div>
-                
-                <div id="convert-results" class="results-area"></div>
-            </div>
-        </div>
 
     </main>
 
