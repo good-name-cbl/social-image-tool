@@ -5,20 +5,20 @@ class ImageProcessor {
     }
 
     initializeEventListeners() {
-        // リサイズツール
+        // Resize tool
         this.setupFileUpload('resize-upload', 'resize-files', this.handleResizeFiles.bind(this));
         document.getElementById('resize-process').addEventListener('click', this.processResize.bind(this));
         document.getElementById('keep-aspect').addEventListener('change', this.toggleAspectRatio.bind(this));
         document.getElementById('resize-width').addEventListener('input', this.updateDimensions.bind(this));
         document.getElementById('resize-height').addEventListener('input', this.updateDimensions.bind(this));
 
-        // 変換ツール
+        // Convert tool
         this.setupFileUpload('convert-upload', 'convert-files', this.handleConvertFiles.bind(this));
         document.getElementById('convert-process').addEventListener('click', this.processConvert.bind(this));
         document.getElementById('convert-format').addEventListener('change', this.toggleQualityOption.bind(this));
         document.getElementById('convert-quality').addEventListener('input', this.updateQualityValue.bind(this));
 
-        // アイコンツール
+        // Icon tool
         this.setupFileUpload('icon-upload', 'icon-files', this.handleIconFiles.bind(this));
         document.getElementById('icon-process').addEventListener('click', this.processIcon.bind(this));
         document.getElementById('icon-type').addEventListener('change', this.toggleCustomSize.bind(this));
@@ -32,7 +32,7 @@ class ImageProcessor {
             button.addEventListener('click', () => {
                 const tabId = button.getAttribute('data-tab');
                 
-                // アクティブなタブとコンテンツを切り替え
+                // Switch active tab and content
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabContents.forEach(content => content.classList.remove('active'));
                 
@@ -69,7 +69,7 @@ class ImageProcessor {
         handler(e.dataTransfer.files);
     }
 
-    // リサイズ機能
+    // Resize functionality
     handleResizeFiles(files) {
         if (files.length === 0) return;
         
@@ -81,7 +81,7 @@ class ImageProcessor {
 
         document.getElementById('resize-options').style.display = 'block';
         
-        // 最初の画像の元サイズを取得して設定
+        // Get and set the original size of the first image
         const firstFile = this.resizeFiles[0];
         const img = new Image();
         img.onload = () => {
@@ -167,7 +167,7 @@ class ImageProcessor {
         });
     }
 
-    // 変換機能
+    // Convert functionality
     handleConvertFiles(files) {
         if (files.length === 0) return;
         
@@ -256,7 +256,7 @@ class ImageProcessor {
         return filename.substring(0, lastDotIndex) + '.' + newExtension;
     }
 
-    // アイコン機能
+    // Icon functionality
     handleIconFiles(files) {
         if (files.length === 0) return;
         
@@ -305,7 +305,7 @@ class ImageProcessor {
 
     getIconSizes(iconType) {
         const sizeMap = {
-            // ウェブサイト用
+            // Website icons
             'favicon': [[16, 16], [32, 32], [48, 48]],
             'apple': [[180, 180]],
             'android': [[192, 192]],
@@ -348,7 +348,7 @@ class ImageProcessor {
             // TikTok
             'tiktok-profile': [[200, 200]],
             
-            // カスタム
+            // Custom
             'custom': [[parseInt(document.getElementById('icon-size').value) || 256, parseInt(document.getElementById('icon-size').value) || 256]]
         };
         return sizeMap[iconType] || [[256, 256]];
@@ -356,7 +356,7 @@ class ImageProcessor {
 
     getIconFileName(iconType, size) {
         const fileNames = {
-            // ウェブサイト用
+            // Website icons
             'favicon': `favicon_${size[0]}x${size[1]}`,
             'apple': 'apple-touch-icon',
             'android': 'android-icon',
@@ -399,7 +399,7 @@ class ImageProcessor {
             // TikTok
             'tiktok-profile': 'tiktok_profile_picture',
             
-            // カスタム
+            // Custom
             'custom': `custom_${size[0]}x${size[1]}`
         };
         return fileNames[iconType] || `image_${size[0]}x${size[1]}`;
@@ -415,18 +415,18 @@ class ImageProcessor {
                 canvas.width = size[0];
                 canvas.height = size[1];
                 
-                // 背景を白で塗りつぶし（透明背景を避けるため）
+                // Fill background with white (to avoid transparent background)
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
-                // アスペクト比に応じた描画方法を決定
+                // Determine drawing method based on aspect ratio
                 const targetRatio = size[0] / size[1];
                 const sourceRatio = img.width / img.height;
                 
                 let drawWidth, drawHeight, sx, sy, sWidth, sHeight;
                 
                 if (this.isSquareImage(iconType)) {
-                    // 正方形画像の場合：中央部分を正方形にクロップ
+                    // For square images: crop the center portion to square
                     const minDimension = Math.min(img.width, img.height);
                     sx = (img.width - minDimension) / 2;
                     sy = (img.height - minDimension) / 2;
@@ -435,7 +435,7 @@ class ImageProcessor {
                     drawWidth = size[0];
                     drawHeight = size[1];
                 } else if (targetRatio > sourceRatio) {
-                    // ターゲットの方が横長：横幅に合わせてフィット
+                    // If target is wider: fit to width
                     drawWidth = size[0];
                     drawHeight = size[0] / sourceRatio;
                     sx = 0;
@@ -443,7 +443,7 @@ class ImageProcessor {
                     sWidth = img.width;
                     sHeight = img.height;
                 } else {
-                    // ターゲットの方が縦長：縦幅に合わせてフィット
+                    // If target is taller: fit to height
                     drawWidth = size[1] * sourceRatio;
                     drawHeight = size[1];
                     sx = 0;
@@ -452,7 +452,7 @@ class ImageProcessor {
                     sHeight = img.height;
                 }
                 
-                // 画像を中央に配置
+                // Center the image
                 const dx = (size[0] - drawWidth) / 2;
                 const dy = (size[1] - drawHeight) / 2;
                 
@@ -467,7 +467,7 @@ class ImageProcessor {
         });
     }
 
-    // 正方形画像かどうかを判定
+    // Determine if the image should be square
     isSquareImage(iconType) {
         const squareTypes = [
             'favicon', 'apple', 'android',
@@ -478,7 +478,7 @@ class ImageProcessor {
         return squareTypes.includes(iconType);
     }
 
-    // 結果表示
+    // Display results
     createResultItem(container, blob, fileName, info) {
         const item = document.createElement('div');
         item.className = 'result-item';
@@ -492,7 +492,7 @@ class ImageProcessor {
 
         const downloadBtn = document.createElement('a');
         downloadBtn.className = 'download-btn';
-        downloadBtn.textContent = 'ダウンロード';
+        downloadBtn.textContent = 'Download';
         downloadBtn.href = URL.createObjectURL(blob);
         downloadBtn.download = fileName;
 
@@ -503,7 +503,7 @@ class ImageProcessor {
     }
 }
 
-// アプリケーション初期化
+// Application initialization
 document.addEventListener('DOMContentLoaded', () => {
     new ImageProcessor();
 });
