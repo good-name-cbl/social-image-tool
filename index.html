@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Image Resizer - One-Click Perfect Sizing</title>
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1083138396222658"
+         crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Social Media Image Resizer</h1>
+            <p>Transform one image into perfect sizes for YouTube, Twitter, Instagram and more - instantly!</p>
+        </div>
+    </header>
+
+    <nav class="tab-nav">
+        <div class="container">
+            <button class="tab-button active" data-tab="icon">One-Click Resize</button>
+            <button class="tab-button" data-tab="resize">Custom Resize</button>
+            <button class="tab-button" data-tab="convert">Format Converter</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- アイコン生成ツール -->
+        <div id="icon" class="tab-content active">
+            <div class="tool-section">
+                <h2>One-Click Social Media Resize</h2>
+                <div class="upload-area" id="icon-upload">
+                    <p>Upload one image and instantly get perfectly sized versions for all your social media platforms!</p>
+                    <input type="file" id="icon-files" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="icon-options" id="icon-options" style="display: none;">
+                    <div class="input-group">
+                        <label>Image Type:</label>
+                        <select id="icon-type">
+                            <optgroup label="YouTube">
+                                <option value="youtube-profile">YouTube Profile Image (800x800)</option>
+                                <option value="youtube-channel">YouTube Channel Art (2560x1440)</option>
+                                <option value="youtube-thumbnail">YouTube Thumbnail (1280x720)</option>
+                                <option value="youtube-community">YouTube Community Post (1200x675)</option>
+                            </optgroup>
+                            <optgroup label="Twitter/X">
+                                <option value="twitter-profile">Twitter Profile Image (400x400)</option>
+                                <option value="twitter-header">Twitter Header (1500x500)</option>
+                            </optgroup>
+                            <optgroup label="Facebook">
+                                <option value="facebook-profile">Facebook Profile Photo (170x170)</option>
+                                <option value="facebook-cover">Facebook Cover Photo (820x312)</option>
+                                <option value="facebook-post">Facebook Post Image (1200x630)</option>
+                            </optgroup>
+                            <optgroup label="Instagram">
+                                <option value="instagram-profile">Instagram Profile Photo (320x320)</option>
+                                <option value="instagram-story">Instagram Story (1080x1920)</option>
+                                <option value="instagram-post">Instagram Post (1080x1080)</option>
+                                <option value="instagram-reels">Instagram Reels (1080x1920)</option>
+                            </optgroup>
+                            <optgroup label="LinkedIn">
+                                <option value="linkedin-profile">LinkedIn Profile Photo (400x400)</option>
+                                <option value="linkedin-cover">LinkedIn Cover Photo (1584x396)</option>
+                                <option value="linkedin-post">LinkedIn Post Image (1200x627)</option>
+                            </optgroup>
+                            <optgroup label="Discord">
+                                <option value="discord-server">Discord Server Icon (512x512)</option>
+                                <option value="discord-banner">Discord Server Banner (960x540)</option>
+                            </optgroup>
+                            <optgroup label="Twitch">
+                                <option value="twitch-profile">Twitch Profile Image (256x256)</option>
+                                <option value="twitch-banner">Twitch Banner (1920x480)</option>
+                                <option value="twitch-offline">Twitch Offline Screen (1920x1080)</option>
+                            </optgroup>
+                            <optgroup label="TikTok">
+                                <option value="tiktok-profile">TikTok Profile Photo (200x200)</option>
+                            </optgroup>
+                            <optgroup label="Website Icons">
+                                <option value="favicon">Favicon (16x16, 32x32, 48x48)</option>
+                                <option value="apple">Apple Touch Icon (180x180)</option>
+                                <option value="android">Android Icon (192x192)</option>
+                            </optgroup>
+                            <optgroup label="Custom">
+                                <option value="custom">Custom Size</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="input-group" id="custom-size" style="display: none;">
+                        <label>Size (px):</label>
+                        <input type="number" id="icon-size" min="16" max="1024" value="256">
+                    </div>
+                    <button id="icon-process" class="process-btn">Generate Images</button>
+                </div>
+                
+                <div id="icon-results" class="results-area"></div>
+            </div>
+        </div>
+
+        <!-- カスタムリサイズツール -->
+        <div id="resize" class="tab-content">
+            <div class="tool-section">
+                <h2>Custom Image Resizer</h2>
+                <div class="upload-area" id="resize-upload">
+                    <p>Drag & drop images or click to select files</p>
+                    <input type="file" id="resize-files" multiple accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="resize-options" id="resize-options" style="display: none;">
+                    <div class="input-group">
+                        <label>Width (px):</label>
+                        <input type="number" id="resize-width" min="1" max="5000">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (px):</label>
+                        <input type="number" id="resize-height" min="1" max="5000">
+                    </div>
+                    <div class="input-group">
+                        <label>
+                            <input type="checkbox" id="keep-aspect" checked>
+                            Maintain aspect ratio
+                        </label>
+                    </div>
+                    <button id="resize-process" class="process-btn">Resize Images</button>
+                </div>
+                
+                <div id="resize-results" class="results-area"></div>
+            </div>
+        </div>
+
+        <!-- ファイル形式変換ツール -->
+        <div id="convert" class="tab-content">
+            <div class="tool-section">
+                <h2>Image Format Converter</h2>
+                <div class="upload-area" id="convert-upload">
+                    <p>Drag & drop files or click to select images for conversion</p>
+                    <input type="file" id="convert-files" multiple accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="convert-options" id="convert-options" style="display: none;">
+                    <div class="input-group">
+                        <label>Convert to:</label>
+                        <select id="convert-format">
+                            <option value="jpeg">JPEG</option>
+                            <option value="png">PNG</option>
+                            <option value="webp">WebP</option>
+                        </select>
+                    </div>
+                    <div class="input-group" id="quality-group">
+                        <label>Quality (1-100):</label>
+                        <input type="range" id="convert-quality" min="1" max="100" value="90">
+                        <span id="quality-value">90</span>
+                    </div>
+                    <button id="convert-process" class="process-btn">Convert Images</button>
+                </div>
+                
+                <div id="convert-results" class="results-area"></div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Social Media Image Resizer - Free tool for perfect social media sizing</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
