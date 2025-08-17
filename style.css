@@ -109,12 +109,6 @@ main {
     align-items: flex-start;
 }
 
-.sidebar-ad {
-    width: 160px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 120px;
-}
 
 .content-area {
     flex: 1;
@@ -127,13 +121,6 @@ main {
         flex-direction: column;
     }
     
-    .sidebar-ad {
-        width: 100%;
-        position: relative;
-        top: auto;
-        order: 2;
-        text-align: center;
-    }
     
     .content-area {
         order: 1;
@@ -145,8 +132,7 @@ main {
 }
 
 @media (max-width: 480px) {
-    .banner-ad,
-    .sidebar-ad {
+    .banner-ad {
         display: none;
     }
 }
