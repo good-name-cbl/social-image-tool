@@ -97,6 +97,60 @@ main {
     min-height: calc(100vh - 200px);
 }
 
+/* 広告スタイル */
+.banner-ad {
+    text-align: center;
+    margin: 1rem 0 2rem 0;
+}
+
+.main-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.sidebar-ad {
+    width: 160px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 120px;
+}
+
+.content-area {
+    flex: 1;
+    min-width: 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    
+    .sidebar-ad {
+        width: 100%;
+        position: relative;
+        top: auto;
+        order: 2;
+        text-align: center;
+    }
+    
+    .content-area {
+        order: 1;
+    }
+    
+    .banner-ad {
+        margin: 0.5rem 0 1rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-ad,
+    .sidebar-ad {
+        display: none;
+    }
+}
+
 .tab-content {
     display: none;
 }
